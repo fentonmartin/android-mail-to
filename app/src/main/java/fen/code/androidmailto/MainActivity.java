@@ -26,13 +26,23 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /* intent declaration */
                 Intent intent;
+
+                /* intent ACTION_SENDTO */
                 intent = new Intent(Intent.ACTION_SENDTO,
+
+                        /* add email on Uri */
                         Uri.parse("mailto:" + editEmail.getText()));
+
+                /* add subject */
                 intent.putExtra(Intent.EXTRA_SUBJECT, editSubject.getText());
+
+                /* add text */
                 intent.putExtra(Intent.EXTRA_TEXT, editText.getText());
 
-                startActivity(Intent.createChooser(intent, "Chooser Title"));
+                /* startActivity */
+                startActivity(Intent.createChooser(intent, "Send email"));
             }
         });
     }
