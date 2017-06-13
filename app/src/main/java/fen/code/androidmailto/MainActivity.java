@@ -1,5 +1,7 @@
 package fen.code.androidmailto;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,7 +26,13 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent;
+                intent = new Intent(Intent.ACTION_SENDTO,
+                        Uri.parse("mailto:" + editEmail.getText()));
+                intent.putExtra(Intent.EXTRA_SUBJECT, editSubject.getText());
+                intent.putExtra(Intent.EXTRA_TEXT, editText.getText());
 
+                startActivity(Intent.createChooser(intent, "Chooser Title"));
             }
         });
     }
